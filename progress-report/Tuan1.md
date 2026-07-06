@@ -12,7 +12,9 @@ Các công việc đã thực hiện gồm:
 - Đưa source code bản thử nghiệm vào thư mục `scr`.
 - Đưa file cơ sở dữ liệu vào thư mục `setup`.
 - Tạo file `README.md` ban đầu để mô tả đề tài và hướng dẫn chạy chương trình.
-- Xác định các chức năng chính của website như đăng ký, đăng nhập, quản lý danh mục, quản lý giao dịch và sao lưu dữ liệu XML.
+- Xác định các chức năng chính của website như đăng ký, đăng nhập, quản lý danh mục, quản lý giao dịch và sao lưu dữ liệu 
+XML.
+- Đã mời giảng viên tham gia repository GitHub để theo dõi tiến độ đồ án.
 
 ## Kết quả đạt được
 - Đã có cấu trúc thư mục ban đầu cho đồ án.
