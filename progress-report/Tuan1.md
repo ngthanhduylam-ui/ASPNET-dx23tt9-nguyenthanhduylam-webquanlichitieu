@@ -15,12 +15,19 @@ Các công việc đã thực hiện gồm:
 - Xác định các chức năng chính của website như đăng ký, đăng nhập, quản lý danh mục, quản lý giao dịch và sao lưu dữ liệu 
 XML.
 - Đã mời giảng viên tham gia repository GitHub để theo dõi tiến độ đồ án.
+- Đã mở project bằng Visual Studio và chạy thử trên localhost.
+- Đã tạo cơ sở dữ liệu `quan_ly_chi_tieu` bằng MySQL.
+- Đã kiểm tra các bảng chính gồm `nguoi_dung`, `danh_muc`, `giao_dich`.
+- Đã đăng ký tài khoản thử nghiệm và đăng nhập thành công.
+- Đã thêm danh mục mẫu và giao dịch mẫu.
+- Đã kiểm tra bảng điều khiển hiển thị đúng tổng thu, tổng chi và số dư.
 
 ## Kết quả đạt được
 - Đã có cấu trúc thư mục ban đầu cho đồ án.
 - Đã có source code nền để tiếp tục phát triển.
 - Đã có file cơ sở dữ liệu và README ban đầu.
 - Đã xác định được hướng phát triển chính thức từ ngày 06/07/2026.
+- Website đã chạy được trên máy cá nhân. Các chức năng nền như đăng nhập, thêm danh mục, thêm giao dịch và xem tổng quan đã hoạt động.
 
 ## Công việc dự kiến tiếp theo
 - Kiểm tra lại việc chạy project trên Visual Studio.
