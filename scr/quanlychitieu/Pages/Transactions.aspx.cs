@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Web.Security;
 using System.Web.UI.WebControls;
@@ -12,6 +13,7 @@ public partial class Transactions : System.Web.UI.Page
         {
             txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
             LoadCategoriesDropdown();
+            LoadCategoryFilter();
             LoadTransactions();
         }
     }
@@ -38,20 +40,69 @@ public partial class Transactions : System.Web.UI.Page
         }
     }
 
+    private void LoadCategoryFilter()
+    {
+        string query = "SELECT ma_danh_muc, CONCAT(ten_danh_muc, ' (', CASE WHEN loai_danh_muc = 'thu' THEN 'Thu' ELSE 'Chi' END, ')') AS ten_danh_muc FROM danh_muc WHERE ma_nguoi_dung = @UserId ORDER BY loai_danh_muc, ten_danh_muc";
+        MySqlParameter[] parameters = new MySqlParameter[] { new MySqlParameter("@UserId", GetUserId()) };
+        DataTable dt = Database.GetData(query, parameters);
+
+        ddlFilterCategory.DataSource = dt;
+        ddlFilterCategory.DataBind();
+        ddlFilterCategory.Items.Insert(0, new ListItem("Tất cả danh mục", ""));
+    }
+
     private void LoadTransactions()
     {
         string query = @"
-            SELECT g.ma_giao_dich, g.ngay_giao_dich, d.ten_danh_muc, d.loai_danh_muc, g.so_tien, g.ghi_chu
-            FROM giao_dich g
-            INNER JOIN danh_muc d ON g.ma_danh_muc = d.ma_danh_muc
-            WHERE g.ma_nguoi_dung = @UserId
-            ORDER BY g.ngay_giao_dich DESC";
-            
-        MySqlParameter[] parameters = new MySqlParameter[] { new MySqlParameter("@UserId", GetUserId()) };
-        DataTable dt = Database.GetData(query, parameters);
+            SELECT gd.ma_giao_dich, gd.ngay_giao_dich, dm.ten_danh_muc, dm.loai_danh_muc, gd.so_tien, gd.ghi_chu
+            FROM giao_dich gd
+            INNER JOIN danh_muc dm ON gd.ma_danh_muc = dm.ma_danh_muc
+            WHERE gd.ma_nguoi_dung = @UserId AND dm.ma_nguoi_dung = @UserId";
+
+        List<MySqlParameter> parameters = new List<MySqlParameter>();
+        parameters.Add(new MySqlParameter("@UserId", GetUserId()));
+
+        string keyword = txtSearchKeyword.Text.Trim();
+        string type = ddlFilterType.SelectedValue;
+        string categoryId = ddlFilterCategory.SelectedValue;
+
+        if (!string.IsNullOrEmpty(keyword))
+        {
+            query += " AND (LOWER(dm.ten_danh_muc) COLLATE utf8mb4_bin LIKE @Keyword OR LOWER(IFNULL(gd.ghi_chu, '')) COLLATE utf8mb4_bin LIKE @Keyword)";
+            parameters.Add(new MySqlParameter("@Keyword", "%" + keyword.ToLowerInvariant() + "%"));
+        }
+
+        if (!string.IsNullOrEmpty(type))
+        {
+            query += " AND dm.loai_danh_muc = @Type";
+            parameters.Add(new MySqlParameter("@Type", type));
+        }
+
+        if (!string.IsNullOrEmpty(categoryId))
+        {
+            query += " AND gd.ma_danh_muc = @CategoryId";
+            parameters.Add(new MySqlParameter("@CategoryId", categoryId));
+        }
+
+        query += " ORDER BY gd.ngay_giao_dich DESC";
+
+        DataTable dt = Database.GetData(query, parameters.ToArray());
         
         gvTransactions.DataSource = dt;
         gvTransactions.DataBind();
+    }
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        LoadTransactions();
+    }
+
+    protected void btnClearFilter_Click(object sender, EventArgs e)
+    {
+        txtSearchKeyword.Text = "";
+        ddlFilterType.SelectedValue = "";
+        ddlFilterCategory.SelectedValue = "";
+        LoadTransactions();
     }
 
     protected void btnAddTransaction_Click(object sender, EventArgs e)

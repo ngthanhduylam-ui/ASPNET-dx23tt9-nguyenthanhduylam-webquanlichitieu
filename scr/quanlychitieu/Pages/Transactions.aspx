@@ -20,12 +20,12 @@
             
             <div class="form-group">
                 <label>Số tiền (VNĐ)</label>
-                <asp:TextBox ID="txtAmount" runat="server" CssClass="form-control" TextMode="Number" Required="true"></asp:TextBox>
+                <asp:TextBox ID="txtAmount" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
 
             <div class="form-group">
                 <label>Ngày giao dịch</label>
-                <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" TextMode="Date" Required="true"></asp:TextBox>
+                <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
             
             <div class="form-group">
@@ -43,6 +43,29 @@
         <!-- Danh sách giao dịch -->
         <div class="card" style="flex: 2;">
             <h3>Lịch sử giao dịch</h3>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: end; margin-top: 15px;">
+                <div class="form-group" style="flex: 2; min-width: 180px; margin-bottom: 0;">
+                    <label>Từ khóa</label>
+                    <asp:TextBox ID="txtSearchKeyword" runat="server" CssClass="form-control" placeholder="Nhập tên danh mục hoặc ghi chú"></asp:TextBox>
+                </div>
+                <div class="form-group" style="flex: 1; min-width: 130px; margin-bottom: 0;">
+                    <label>Loại giao dịch</label>
+                    <asp:DropDownList ID="ddlFilterType" runat="server" CssClass="form-control">
+                        <asp:ListItem Text="Tất cả" Value=""></asp:ListItem>
+                        <asp:ListItem Text="Thu nhập" Value="thu"></asp:ListItem>
+                        <asp:ListItem Text="Chi tiêu" Value="chi"></asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <div class="form-group" style="flex: 1.5; min-width: 160px; margin-bottom: 0;">
+                    <label>Danh mục</label>
+                    <asp:DropDownList ID="ddlFilterCategory" runat="server" CssClass="form-control" DataTextField="ten_danh_muc" DataValueField="ma_danh_muc">
+                    </asp:DropDownList>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <asp:Button ID="btnSearch" runat="server" Text="Tìm kiếm" CssClass="btn btn-primary" CausesValidation="false" OnClick="btnSearch_Click" />
+                    <asp:Button ID="btnClearFilter" runat="server" Text="Xóa lọc" CssClass="btn btn-danger" CausesValidation="false" OnClick="btnClearFilter_Click" />
+                </div>
+            </div>
             <asp:GridView ID="gvTransactions" runat="server" CssClass="table-custom" AutoGenerateColumns="False" DataKeyNames="ma_giao_dich" OnRowDeleting="gvTransactions_RowDeleting" OnRowCommand="gvTransactions_RowCommand" EmptyDataText="Chưa có giao dịch nào.">
                 <Columns>
                     <asp:BoundField DataField="ngay_giao_dich" HeaderText="Ngày" DataFormatString="{0:dd/MM/yyyy}" />
