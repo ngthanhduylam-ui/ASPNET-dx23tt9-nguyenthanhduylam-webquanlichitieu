@@ -21,6 +21,11 @@ XML.
 - Đã đăng ký tài khoản thử nghiệm và đăng nhập thành công.
 - Đã thêm danh mục mẫu và giao dịch mẫu.
 - Đã kiểm tra bảng điều khiển hiển thị đúng tổng thu, tổng chi và số dư.
+- Rà soát trang quản lý danh mục và trang quản lý giao dịch.
+- Bổ sung chức năng tìm kiếm tương đối ở trang Giao dịch.
+- Bổ sung lọc giao dịch theo loại giao dịch và danh mục.
+- Sửa lỗi nút Tìm kiếm bị dính kiểm tra dữ liệu của form thêm giao dịch.
+- Kiểm tra lại chức năng thêm, sửa, xóa giao dịch sau khi bổ sung bộ lọc.
 
 ## Kết quả đạt được
 - Đã có cấu trúc thư mục ban đầu cho đồ án.
@@ -28,6 +33,7 @@ XML.
 - Đã có file cơ sở dữ liệu và README ban đầu.
 - Đã xác định được hướng phát triển chính thức từ ngày 06/07/2026.
 - Website đã chạy được trên máy cá nhân. Các chức năng nền như đăng nhập, thêm danh mục, thêm giao dịch và xem tổng quan đã hoạt động.
+- Trang Giao dịch đã có thêm chức năng tìm kiếm và lọc dữ liệu. Người dùng có thể tìm giao dịch theo tên danh mục hoặc ghi chú, đồng thời lọc theo loại giao dịch và danh mục.
 
 ## Công việc dự kiến tiếp theo
 - Kiểm tra lại việc chạy project trên Visual Studio.
