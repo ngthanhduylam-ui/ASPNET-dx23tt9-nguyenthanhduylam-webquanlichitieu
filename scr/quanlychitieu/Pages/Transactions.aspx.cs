@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Web.Security;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
@@ -105,6 +106,61 @@ public partial class Transactions : System.Web.UI.Page
         LoadTransactions();
     }
 
+    private string NormalizeAmountInput(string amountStr)
+    {
+        return (amountStr ?? "").Replace(".", "").Trim();
+    }
+
+    private string FormatAmountForInput(decimal amount)
+    {
+        return amount.ToString("N0", new CultureInfo("vi-VN"));
+    }
+
+    private bool ValidateTransactionInput(string categoryId, string amountStr, string dateStr, out decimal amount, out DateTime transactionDate)
+    {
+        amount = 0;
+        transactionDate = DateTime.MinValue;
+        string normalizedAmount = NormalizeAmountInput(amountStr);
+
+        if (string.IsNullOrEmpty(categoryId))
+        {
+            ShowMessage("Vui lòng chọn danh mục.", false);
+            return false;
+        }
+
+        if (string.IsNullOrEmpty(normalizedAmount))
+        {
+            ShowMessage("Vui lòng nhập số tiền.", false);
+            return false;
+        }
+
+        if (!decimal.TryParse(normalizedAmount, NumberStyles.Number, CultureInfo.InvariantCulture, out amount))
+        {
+            ShowMessage("Số tiền không hợp lệ.", false);
+            return false;
+        }
+
+        if (amount <= 0)
+        {
+            ShowMessage("Số tiền phải lớn hơn 0.", false);
+            return false;
+        }
+
+        if (string.IsNullOrEmpty(dateStr))
+        {
+            ShowMessage("Vui lòng chọn ngày giao dịch.", false);
+            return false;
+        }
+
+        if (!DateTime.TryParse(dateStr, out transactionDate))
+        {
+            ShowMessage("Ngày giao dịch không hợp lệ.", false);
+            return false;
+        }
+
+        return true;
+    }
+
     protected void btnAddTransaction_Click(object sender, EventArgs e)
     {
         string categoryId = ddlCategories.SelectedValue;
@@ -112,9 +168,10 @@ public partial class Transactions : System.Web.UI.Page
         string dateStr = txtDate.Text.Trim();
         string note = txtNote.Text.Trim();
 
-        if (string.IsNullOrEmpty(categoryId) || string.IsNullOrEmpty(amountStr) || string.IsNullOrEmpty(dateStr))
+        decimal amount;
+        DateTime transactionDate;
+        if (!ValidateTransactionInput(categoryId, amountStr, dateStr, out amount, out transactionDate))
         {
-            ShowMessage("Vui lòng điền đủ Số tiền, Ngày và chọn Danh mục.", false);
             return;
         }
 
@@ -133,8 +190,8 @@ public partial class Transactions : System.Web.UI.Page
 
         MySqlParameter[] parameters = new MySqlParameter[]
         {
-            new MySqlParameter("@Amount", amountStr),
-            new MySqlParameter("@Date", dateStr),
+            new MySqlParameter("@Amount", amount),
+            new MySqlParameter("@Date", transactionDate),
             new MySqlParameter("@Note", note),
             new MySqlParameter("@CategoryId", categoryId),
             new MySqlParameter("@UserId", GetUserId()),
@@ -171,7 +228,7 @@ public partial class Transactions : System.Web.UI.Page
             {
                 DataRow row = dt.Rows[0];
                 hfEditTransId.Value = row["ma_giao_dich"].ToString();
-                txtAmount.Text = Convert.ToDecimal(row["so_tien"]).ToString("0.##");
+                txtAmount.Text = FormatAmountForInput(Convert.ToDecimal(row["so_tien"]));
                 txtDate.Text = Convert.ToDateTime(row["ngay_giao_dich"]).ToString("yyyy-MM-dd");
                 txtNote.Text = row["ghi_chu"].ToString();
                 if (ddlCategories.Items.FindByValue(row["ma_danh_muc"].ToString()) != null)

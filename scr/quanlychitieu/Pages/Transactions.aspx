@@ -20,12 +20,12 @@
             
             <div class="form-group">
                 <label>Số tiền (VNĐ)</label>
-                <asp:TextBox ID="txtAmount" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtAmount" runat="server" CssClass="form-control" inputmode="numeric"></asp:TextBox>
             </div>
 
             <div class="form-group">
                 <label>Ngày giao dịch</label>
-                <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" placeholder="yyyy-MM-dd"></asp:TextBox>
             </div>
             
             <div class="form-group">
@@ -62,8 +62,8 @@
                     </asp:DropDownList>
                 </div>
                 <div class="form-group" style="margin-bottom: 0;">
-                    <asp:Button ID="btnSearch" runat="server" Text="Tìm kiếm" CssClass="btn btn-primary" CausesValidation="false" OnClick="btnSearch_Click" />
-                    <asp:Button ID="btnClearFilter" runat="server" Text="Xóa lọc" CssClass="btn btn-danger" CausesValidation="false" OnClick="btnClearFilter_Click" />
+                    <asp:Button ID="btnSearch" runat="server" Text="Tìm kiếm" CssClass="btn btn-primary" CausesValidation="false" UseSubmitBehavior="false" OnClick="btnSearch_Click" />
+                    <asp:Button ID="btnClearFilter" runat="server" Text="Xóa lọc" CssClass="btn btn-danger" CausesValidation="false" UseSubmitBehavior="false" OnClick="btnClearFilter_Click" />
                 </div>
             </div>
             <asp:GridView ID="gvTransactions" runat="server" CssClass="table-custom" AutoGenerateColumns="False" DataKeyNames="ma_giao_dich" OnRowDeleting="gvTransactions_RowDeleting" OnRowCommand="gvTransactions_RowCommand" EmptyDataText="Chưa có giao dịch nào.">
@@ -89,4 +89,24 @@
         </div>
 
     </div>
+
+    <script type="text/javascript">
+        function formatMoney(value) {
+            var digits = value.replace(/\D/g, "");
+            return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var amountInput = document.getElementById("<%= txtAmount.ClientID %>");
+            if (amountInput == null) {
+                return;
+            }
+
+            amountInput.value = formatMoney(amountInput.value);
+
+            amountInput.addEventListener("input", function () {
+                amountInput.value = formatMoney(amountInput.value);
+            });
+        });
+    </script>
 </asp:Content>
