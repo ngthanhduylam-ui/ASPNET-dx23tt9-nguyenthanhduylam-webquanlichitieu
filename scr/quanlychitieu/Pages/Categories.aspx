@@ -7,14 +7,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div style="display: flex; gap: 30px;">
         
-        <!-- Form thêm danh mục -->
+        <!-- Form thêm/sửa danh mục -->
         <div class="card" style="flex: 1; height: fit-content;">
             <h3>Thêm danh mục mới</h3>
             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
             
             <div class="form-group" style="margin-top: 15px;">
                 <label>Tên danh mục</label>
-                <asp:TextBox ID="txtCategoryName" runat="server" CssClass="form-control" Required="true" placeholder="VD: Tiền nhà, Lương..."></asp:TextBox>
+                <asp:TextBox ID="txtCategoryName" runat="server" CssClass="form-control" placeholder="VD: Tiền nhà, Lương..."></asp:TextBox>
             </div>
             
             <div class="form-group">
@@ -27,13 +27,14 @@
             
             <div class="form-group">
                 <asp:Button ID="btnAddCategory" runat="server" Text="Thêm danh mục" CssClass="btn btn-primary" OnClick="btnAddCategory_Click" />
+                <asp:Button ID="btnCancelEdit" runat="server" Text="Hủy" CssClass="btn btn-danger" Visible="false" CausesValidation="false" OnClick="btnCancelEdit_Click" />
             </div>
         </div>
 
         <!-- Danh sách danh mục -->
         <div class="card" style="flex: 2;">
             <h3>Danh sách các danh mục</h3>
-            <asp:GridView ID="gvCategories" runat="server" CssClass="table-custom" AutoGenerateColumns="False" DataKeyNames="ma_danh_muc" OnRowDeleting="gvCategories_RowDeleting" EmptyDataText="Bạn chưa có danh mục nào. Hãy tạo mới bên trái.">
+            <asp:GridView ID="gvCategories" runat="server" CssClass="table-custom" AutoGenerateColumns="False" DataKeyNames="ma_danh_muc" OnRowDeleting="gvCategories_RowDeleting" OnRowCommand="gvCategories_RowCommand" EmptyDataText="Bạn chưa có danh mục nào. Hãy tạo mới bên trái.">
                 <Columns>
                     <asp:BoundField DataField="ten_danh_muc" HeaderText="Tên danh mục" />
                     <asp:TemplateField HeaderText="Loại">
@@ -45,6 +46,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Hành động">
                         <ItemTemplate>
+                            <asp:LinkButton ID="btnEdit" runat="server" CommandName="EditCategory" CommandArgument='<%# Eval("ma_danh_muc") %>' CssClass="btn btn-primary" style="padding: 5px 10px; font-size: 14px; margin-right: 5px; background-color: #ffc107; color: #333; border: none;">Sửa</asp:LinkButton>
                             <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" CssClass="btn btn-danger" style="padding: 5px 10px; font-size: 14px;" OnClientClick="return confirm('Bạn có chắc chắn muốn xóa danh mục này? Các giao dịch thuộc danh mục này cũng sẽ bị xóa theo!');">Xóa</asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
