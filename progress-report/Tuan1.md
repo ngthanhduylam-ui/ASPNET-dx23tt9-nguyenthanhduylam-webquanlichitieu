@@ -1,7 +1,7 @@
 # Báo cáo tiến độ tuần 01
 
 ## Thời gian thực hiện
-Từ ngày 06/07/2026 đến ngày 07/07/2026.
+Từ ngày 06/07/2026 đến ngày 09/07/2026.
 
 ## Nội dung đã thực hiện
 Trong tuần đầu tiên, em bắt đầu chuẩn bị đồ án chính thức cho môn Chuyên đề ASP.NET với đề tài “Xây dựng website quản lý chi tiêu cá nhân”.
@@ -26,6 +26,18 @@ XML.
 - Bổ sung lọc giao dịch theo loại giao dịch và danh mục.
 - Sửa lỗi nút Tìm kiếm bị dính kiểm tra dữ liệu của form thêm giao dịch.
 - Kiểm tra lại chức năng thêm, sửa, xóa giao dịch sau khi bổ sung bộ lọc.
+- Rà soát trang quản lý danh mục.
+- Bổ sung chức năng sửa danh mục.
+- Thêm nút “Sửa” bên cạnh nút “Xóa” trong danh sách danh mục.
+- Khi bấm “Sửa”, thông tin danh mục được đưa lên form để cập nhật.
+- Bổ sung nút “Hủy” để quay lại chế độ thêm mới.
+- Kiểm tra lại chức năng thêm, sửa, xóa danh mục.
+- Rà soát trang quản lý giao dịch.
+- Hoàn thiện kiểm tra dữ liệu nhập khi thêm/sửa giao dịch.
+- Kiểm tra số tiền không được để trống, phải là số và phải lớn hơn 0.
+- Kiểm tra ngày giao dịch không được để trống và phải hợp lệ.
+- Bổ sung định dạng số tiền tự động có dấu chấm hàng nghìn khi nhập.
+- Kiểm tra lại chức năng tìm kiếm, lọc, thêm, sửa, xóa giao dịch sau khi cập nhật.
 
 ## Kết quả đạt được
 - Đã có cấu trúc thư mục ban đầu cho đồ án.
@@ -34,7 +46,7 @@ XML.
 - Đã xác định được hướng phát triển chính thức từ ngày 06/07/2026.
 - Website đã chạy được trên máy cá nhân. Các chức năng nền như đăng nhập, thêm danh mục, thêm giao dịch và xem tổng quan đã hoạt động.
 - Trang Giao dịch đã có thêm chức năng tìm kiếm và lọc dữ liệu. Người dùng có thể tìm giao dịch theo tên danh mục hoặc ghi chú, đồng thời lọc theo loại giao dịch và danh mục.
-
+- Trang Danh mục đã có đủ thao tác thêm, sửa, xóa. Ô nhập số tiền dễ nhìn hơn khi nhập các khoản tiền lớn.
 ## Công việc dự kiến tiếp theo
 - Kiểm tra lại việc chạy project trên Visual Studio.
 - Kiểm tra kết nối cơ sở dữ liệu.
