@@ -20,9 +20,9 @@
     </div>
 
     <!-- Hàng thẻ tóm tắt -->
-    <div style="display: flex; gap: 20px; margin-bottom: 30px;">
+    <div style="display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap;">
         <!-- Tổng thu -->
-        <div class="card" style="flex: 1; text-align: center; border-top: 4px solid #28a745;">
+        <div class="card" style="flex: 1; min-width: 200px; text-align: center; border-top: 4px solid #28a745;">
             <h3 style="color: #666; font-size: 16px;">TỔNG THU</h3>
             <p style="font-size: 28px; font-weight: bold; color: #28a745; margin-top: 10px;">
                 <asp:Label ID="lblIncome" runat="server" Text="0 đ"></asp:Label>
@@ -30,7 +30,7 @@
         </div>
 
         <!-- Tổng chi -->
-        <div class="card" style="flex: 1; text-align: center; border-top: 4px solid #dc3545;">
+        <div class="card" style="flex: 1; min-width: 200px; text-align: center; border-top: 4px solid #dc3545;">
             <h3 style="color: #666; font-size: 16px;">TỔNG CHI</h3>
             <p style="font-size: 28px; font-weight: bold; color: #dc3545; margin-top: 10px;">
                 <asp:Label ID="lblExpense" runat="server" Text="0 đ"></asp:Label>
@@ -38,10 +38,18 @@
         </div>
 
         <!-- Số dư -->
-        <div class="card" style="flex: 1; text-align: center; border-top: 4px solid #0056b3;">
-            <h3 style="color: #666; font-size: 16px;">SỐ DƯ HIỆN TẠI</h3>
+        <div class="card" style="flex: 1; min-width: 200px; text-align: center; border-top: 4px solid #0056b3;">
+            <h3 style="color: #666; font-size: 16px;">SỐ DƯ</h3>
             <p style="font-size: 28px; font-weight: bold; color: #0056b3; margin-top: 10px;">
                 <asp:Label ID="lblBalance" runat="server" Text="0 đ"></asp:Label>
+            </p>
+        </div>
+
+        <!-- Tổng số giao dịch -->
+        <div class="card" style="flex: 1; min-width: 200px; text-align: center; border-top: 4px solid #6c757d;">
+            <h3 style="color: #666; font-size: 16px;">TỔNG SỐ GIAO DỊCH</h3>
+            <p style="font-size: 28px; font-weight: bold; color: #333; margin-top: 10px;">
+                <asp:Label ID="lblTransactionCount" runat="server" Text="0"></asp:Label>
             </p>
         </div>
     </div>
@@ -56,12 +64,43 @@
                 <asp:TemplateField HeaderText="Số tiền">
                     <ItemTemplate>
                         <span class='<%# Eval("loai_danh_muc").ToString() == "thu" ? "text-success" : "text-danger" %>'>
-                            <%# Eval("loai_danh_muc").ToString() == "thu" ? "+" : "-" %> <%# Eval("so_tien", "{0:N0}") %> đ
+                            <%# Eval("loai_danh_muc").ToString() == "thu" ? "+" : "-" %> <%# FormatMoney(Eval("so_tien")) %>
                         </span>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="ghi_chu" HeaderText="Ghi chú" />
             </Columns>
         </asp:GridView>
+    </div>
+
+    <!-- Thống kê theo danh mục -->
+    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <div class="card" style="flex: 1; min-width: 300px;">
+            <h3>Thống kê chi theo danh mục</h3>
+            <asp:GridView ID="gvExpenseByCategory" runat="server" CssClass="table-custom" AutoGenerateColumns="False" EmptyDataText="Chưa có dữ liệu chi theo danh mục.">
+                <Columns>
+                    <asp:BoundField DataField="ten_danh_muc" HeaderText="Tên danh mục" />
+                    <asp:TemplateField HeaderText="Tổng tiền">
+                        <ItemTemplate>
+                            <span class="text-danger"><%# FormatMoney(Eval("tong_tien")) %></span>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+        </div>
+
+        <div class="card" style="flex: 1; min-width: 300px;">
+            <h3>Thống kê thu theo danh mục</h3>
+            <asp:GridView ID="gvIncomeByCategory" runat="server" CssClass="table-custom" AutoGenerateColumns="False" EmptyDataText="Chưa có dữ liệu thu theo danh mục.">
+                <Columns>
+                    <asp:BoundField DataField="ten_danh_muc" HeaderText="Tên danh mục" />
+                    <asp:TemplateField HeaderText="Tổng tiền">
+                        <ItemTemplate>
+                            <span class="text-success"><%# FormatMoney(Eval("tong_tien")) %></span>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+        </div>
     </div>
 </asp:Content>
