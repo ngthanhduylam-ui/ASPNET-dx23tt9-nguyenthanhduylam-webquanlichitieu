@@ -26,6 +26,7 @@ XML.
 - Bổ sung lọc giao dịch theo loại giao dịch và danh mục.
 - Sửa lỗi nút Tìm kiếm bị dính kiểm tra dữ liệu của form thêm giao dịch.
 - Kiểm tra lại chức năng thêm, sửa, xóa giao dịch sau khi bổ sung bộ lọc.
+### Ngày 09/07/2026
 - Rà soát trang quản lý danh mục.
 - Bổ sung chức năng sửa danh mục.
 - Thêm nút “Sửa” bên cạnh nút “Xóa” trong danh sách danh mục.
@@ -38,6 +39,15 @@ XML.
 - Kiểm tra ngày giao dịch không được để trống và phải hợp lệ.
 - Bổ sung định dạng số tiền tự động có dấu chấm hàng nghìn khi nhập.
 - Kiểm tra lại chức năng tìm kiếm, lọc, thêm, sửa, xóa giao dịch sau khi cập nhật.
+### Ngày 10/07/2026
+- Rà soát trang chủ/Dashboard.
+- Bổ sung ô thống kê tổng số giao dịch.
+- Hoàn thiện phần hiển thị tổng thu, tổng chi và số dư.
+- Bổ sung danh sách 5 giao dịch gần nhất.
+- Bổ sung bảng thống kê chi theo danh mục.
+- Bổ sung bảng thống kê thu theo danh mục.
+- Định dạng số tiền theo dạng Việt Nam để dễ theo dõi.
+- Kiểm tra lại Dashboard với dữ liệu thu, chi và các danh mục khác.
 
 ## Kết quả đạt được
 - Đã có cấu trúc thư mục ban đầu cho đồ án.
@@ -47,6 +57,7 @@ XML.
 - Website đã chạy được trên máy cá nhân. Các chức năng nền như đăng nhập, thêm danh mục, thêm giao dịch và xem tổng quan đã hoạt động.
 - Trang Giao dịch đã có thêm chức năng tìm kiếm và lọc dữ liệu. Người dùng có thể tìm giao dịch theo tên danh mục hoặc ghi chú, đồng thời lọc theo loại giao dịch và danh mục.
 - Trang Danh mục đã có đủ thao tác thêm, sửa, xóa. Ô nhập số tiền dễ nhìn hơn khi nhập các khoản tiền lớn.
+- Trang Dashboard hiển thị rõ tình hình thu chi của người dùng, gồm tổng thu, tổng chi, số dư, tổng số giao dịch, giao dịch gần đây và thống kê theo danh mục.
 ## Công việc dự kiến tiếp theo
 - Kiểm tra lại việc chạy project trên Visual Studio.
 - Kiểm tra kết nối cơ sở dữ liệu.
