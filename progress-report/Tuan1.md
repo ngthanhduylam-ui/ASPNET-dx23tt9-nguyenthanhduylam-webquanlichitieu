@@ -48,6 +48,14 @@ XML.
 - Bổ sung bảng thống kê thu theo danh mục.
 - Định dạng số tiền theo dạng Việt Nam để dễ theo dõi.
 - Kiểm tra lại Dashboard với dữ liệu thu, chi và các danh mục khác.
+### Ngày 11/07/2026
+- Rà soát chức năng Sao lưu XML của website.
+- Kiểm tra chức năng xuất danh sách giao dịch ra file XML.
+- Kiểm tra file XML có các thông tin như danh mục, loại danh mục, số tiền, ngày giao dịch và ghi chú.
+- Hoàn thiện phần khôi phục dữ liệu từ file XML.
+- Bổ sung kiểm tra dữ liệu khi nhập XML để tránh lỗi dữ liệu.
+- Kiểm tra trường hợp nhập lại file XML cũ để tránh bị trùng giao dịch.
+- Kiểm tra trường hợp file XML sai số tiền và hệ thống báo lỗi theo dòng.
 
 ## Kết quả đạt được
 - Đã có cấu trúc thư mục ban đầu cho đồ án.
@@ -58,6 +66,7 @@ XML.
 - Trang Giao dịch đã có thêm chức năng tìm kiếm và lọc dữ liệu. Người dùng có thể tìm giao dịch theo tên danh mục hoặc ghi chú, đồng thời lọc theo loại giao dịch và danh mục.
 - Trang Danh mục đã có đủ thao tác thêm, sửa, xóa. Ô nhập số tiền dễ nhìn hơn khi nhập các khoản tiền lớn.
 - Trang Dashboard hiển thị rõ tình hình thu chi của người dùng, gồm tổng thu, tổng chi, số dư, tổng số giao dịch, giao dịch gần đây và thống kê theo danh mục.
+- Chức năng Sao lưu XML đã hoạt động ổn hơn. Người dùng có thể xuất dữ liệu giao dịch ra file XML và khôi phục lại khi cần. Khi nhập dữ liệu, hệ thống có kiểm tra lỗi cơ bản và bỏ qua các giao dịch đã tồn tại để tránh bị trùng dữ liệu.
 ## Công việc dự kiến tiếp theo
 - Kiểm tra lại việc chạy project trên Visual Studio.
 - Kiểm tra kết nối cơ sở dữ liệu.
@@ -66,4 +75,4 @@ XML.
 - Bổ sung tìm kiếm, lọc dữ liệu và thống kê nếu còn thiếu.
 
 ## Ghi chú
-Các phần code trước ngày 06/07/2026 được xem là bản thử nghiệm ban đầu. Từ ngày 06/07/2026, đồ án bắt đầu được quản lý chính thức trên GitHub để phục vụ báo cáo môn học.
+Các phần code trước ngày 06/07/2026 được xem là bản thử nghiệm. Từ ngày 06/07/2026, đồ án bắt đầu được quản lý chính thức trên GitHub để phục vụ báo cáo môn học.
