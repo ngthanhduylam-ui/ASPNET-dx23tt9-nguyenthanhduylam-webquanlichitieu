@@ -56,7 +56,16 @@ XML.
 - Bổ sung kiểm tra dữ liệu khi nhập XML để tránh lỗi dữ liệu.
 - Kiểm tra trường hợp nhập lại file XML cũ để tránh bị trùng giao dịch.
 - Kiểm tra trường hợp file XML sai số tiền và hệ thống báo lỗi theo dòng.
+### Ngày 12/07/2026
+- Rà soát tổng thể các trang chính của website.
+- Kiểm tra trang đăng nhập, đăng ký và đổi mật khẩu.
+- Kiểm tra lại Dashboard, danh mục, giao dịch và sao lưu XML.
+- Rà soát đường dẫn menu và các liên kết giữa các trang.
+- Chỉnh lại một số đường dẫn để tránh lỗi khi truy cập từ trang con.
+- Cập nhật README theo các chức năng hiện tại của website.
+- Chạy kiểm tra toàn bộ project và không phát hiện lỗi.
 
+Kết quả đạt được: Website đã ổn định hơn trước khi chuyển sang giai đoạn viết báo cáo và làm slide. Các chức năng chính đã được rà soát lại, README cũng được cập nhật để phản ánh đúng chức năng hiện có của project.
 ## Kết quả đạt được
 - Đã có cấu trúc thư mục ban đầu cho đồ án.
 - Đã có source code nền để tiếp tục phát triển.
@@ -67,6 +76,7 @@ XML.
 - Trang Danh mục đã có đủ thao tác thêm, sửa, xóa. Ô nhập số tiền dễ nhìn hơn khi nhập các khoản tiền lớn.
 - Trang Dashboard hiển thị rõ tình hình thu chi của người dùng, gồm tổng thu, tổng chi, số dư, tổng số giao dịch, giao dịch gần đây và thống kê theo danh mục.
 - Chức năng Sao lưu XML đã hoạt động ổn hơn. Người dùng có thể xuất dữ liệu giao dịch ra file XML và khôi phục lại khi cần. Khi nhập dữ liệu, hệ thống có kiểm tra lỗi cơ bản và bỏ qua các giao dịch đã tồn tại để tránh bị trùng dữ liệu.
+- Website đã ổn định hơn trước khi chuyển sang giai đoạn viết báo cáo và làm slide. Các chức năng chính đã được rà soát lại, README cũng được cập nhật để phản ánh đúng chức năng hiện có của project.
 ## Công việc dự kiến tiếp theo
 - Kiểm tra lại việc chạy project trên Visual Studio.
 - Kiểm tra kết nối cơ sở dữ liệu.
