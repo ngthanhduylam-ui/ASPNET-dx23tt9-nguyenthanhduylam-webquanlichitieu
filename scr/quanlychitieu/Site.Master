@@ -15,17 +15,17 @@
         <!-- Header -->
         <header class="header">
             <div class="header-title">
-                <a href="Default.aspx">Quản Lý Chi Tiêu</a>
+                <a href="~/Default.aspx" runat="server">Quản Lý Chi Tiêu</a>
             </div>
             <nav class="header-nav">
                 <ul>
                     <asp:LoginView ID="LoginView1" runat="server">
                         <AnonymousTemplate>
                             <% if (!Request.Url.AbsolutePath.ToLower().Contains("register.aspx")) { %>
-                                <li><a href="/Account/Register.aspx">Đăng ký</a></li>
+                                <li><a href="~/Account/Register.aspx" runat="server">Đăng ký</a></li>
                             <% } %>
                             <% if (!Request.Url.AbsolutePath.ToLower().Contains("login.aspx")) { %>
-                                <li><a href="/Account/Login.aspx">Đăng nhập</a></li>
+                                <li><a href="~/Account/Login.aspx" runat="server">Đăng nhập</a></li>
                             <% } %>
                         </AnonymousTemplate>
                         <LoggedInTemplate>

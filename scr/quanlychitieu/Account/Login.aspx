@@ -24,7 +24,7 @@
         </div>
         
         <div style="text-align: center; margin-top: 15px;">
-            Chưa có tài khoản? <a href="/Account/Register.aspx">Đăng ký ngay</a>
+            Chưa có tài khoản? <a href="~/Account/Register.aspx" runat="server">Đăng ký ngay</a>
         </div>
     </div>
 </asp:Content>

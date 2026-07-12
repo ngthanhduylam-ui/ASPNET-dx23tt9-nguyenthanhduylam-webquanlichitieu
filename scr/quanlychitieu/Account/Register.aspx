@@ -29,7 +29,7 @@
         </div>
         
         <div style="text-align: center; margin-top: 15px;">
-            Đã có tài khoản? <a href="/Account/Login.aspx">Đăng nhập</a>
+            Đã có tài khoản? <a href="~/Account/Login.aspx" runat="server">Đăng nhập</a>
         </div>
     </div>
 </asp:Content>
