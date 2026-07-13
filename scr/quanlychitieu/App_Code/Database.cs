@@ -15,7 +15,7 @@ public class Database
         return new MySqlConnection(GetConnectionString());
     }
 
-    // Thực thi câu lệnh Insert/Update/Delete
+    // Thêm, sửa hoặc xóa dữ liệu
     public static int ExecuteNonQuery(string query, params MySqlParameter[] parameters)
     {
         using (MySqlConnection conn = GetConnection())
@@ -32,7 +32,7 @@ public class Database
         }
     }
 
-    // Thực thi truy vấn trả về 1 giá trị vô hướng
+    // Trả về một giá trị
     public static object ExecuteScalar(string query, params MySqlParameter[] parameters)
     {
         using (MySqlConnection conn = GetConnection())
@@ -49,7 +49,7 @@ public class Database
         }
     }
 
-    // Thực thi truy vấn trả về DataTable
+    // Trả về bảng dữ liệu
     public static DataTable GetData(string query, params MySqlParameter[] parameters)
     {
         using (MySqlConnection conn = GetConnection())
@@ -70,7 +70,7 @@ public class Database
         }
     }
 
-    // Lấy DataSet cho việc xuất XML
+    // Lấy dữ liệu để xuất XML
     public static DataSet GetDataSet(string query, params MySqlParameter[] parameters)
     {
         using (MySqlConnection conn = GetConnection())

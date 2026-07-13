@@ -16,7 +16,7 @@ public partial class XmlSync : System.Web.UI.Page
         return id.Ticket.UserData;
     }
 
-    // TÍNH NĂNG XUẤT XML (Chuyển Data từ ADO.NET sang XML)
+    // Xuất danh sách giao dịch ra file XML
     protected void btnExport_Click(object sender, EventArgs e)
     {
         string query = @"
@@ -37,7 +37,7 @@ public partial class XmlSync : System.Web.UI.Page
             Response.AddHeader("content-disposition", "attachment;filename=LichSuGiaoDich.xml");
             Response.Charset = "utf-8";
             
-            // Lệnh WriteXml chuyển trực tiếp Dataset thành file XML
+            // Ghi dữ liệu ra file XML
             ds.WriteXml(Response.OutputStream);
             Response.End();
         }
@@ -47,7 +47,7 @@ public partial class XmlSync : System.Web.UI.Page
         }
     }
 
-    // TÍNH NĂNG NHẬP XML (Chuyển XML về DataSet và chèn vào Database qua ADO.NET)
+    // Đọc dữ liệu từ file XML
     protected void btnImport_Click(object sender, EventArgs e)
     {
         if (fileUploadXml.HasFile)
@@ -61,7 +61,7 @@ public partial class XmlSync : System.Web.UI.Page
                 }
 
                 DataSet ds = new DataSet();
-                // Đọc file XML được upload lên vào DataSet
+                // Đọc file đã chọn
                 ds.ReadXml(fileUploadXml.PostedFile.InputStream);
 
                 if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
@@ -94,13 +94,13 @@ public partial class XmlSync : System.Web.UI.Page
                             return;
                         }
 
-                        // 1. Kiểm tra xem danh mục đã tồn tại chưa, nếu chưa thì tạo mới cho user hiện tại
+                        // Tạo danh mục nếu chưa có
                         int categoryId = GetOrCreateCategoryId(tenDanhMuc, loaiDanhMuc, userId);
 
-                        // 2. Kiểm tra xem giao dịch đã tồn tại chưa để tránh trùng lặp
+                        // Kiểm tra giao dịch trùng
                         if (!IsTransactionExists(soTien, ngayGiaoDich, ghiChu, categoryId, userId))
                         {
-                            // 3. Chèn giao dịch
+                            // Thêm giao dịch
                             InsertTransaction(soTien, ngayGiaoDich, ghiChu, categoryId, userId);
                             count++;
                         }

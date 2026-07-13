@@ -53,7 +53,6 @@ public partial class Register : System.Web.UI.Page
         {
             Database.ExecuteNonQuery(insertQuery, insertParams);
             ShowMessage("Đăng ký thành công! Đang chuyển hướng đến trang đăng nhập...", true);
-            // Có thể dùng một timer bằng javascript để chuyển hướng sau 2 giây
             ClientScript.RegisterStartupScript(this.GetType(), "redirect", "setTimeout(function(){ window.location.href = 'Login.aspx'; }, 2000);", true);
         }
         catch (Exception ex)
